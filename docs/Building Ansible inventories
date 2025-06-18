@@ -1,0 +1,80 @@
+# Ansible Inventory 构建指南
+
+Inventory（清单）是 Ansible 部署和配置的托管节点（或主机）的列表。通过创建库存文件，可以跟踪和管理你想要自动化的服务器和设备。
+
+---
+
+## 库存文件格式
+
+Ansible 支持多种库存文件格式，最常用的是 INI 和 YAML 格式：
+
+### 1. INI 格式示例
+
+```ini
+mail.example.com
+
+[webservers]
+foo.example.com
+bar.example.com
+
+[dbservers]
+one.example.com
+two.example.com
+three.example.com
+```
+
+### 2. YAML 格式示例
+
+```yaml
+ungrouped:
+  hosts:
+    mail.example.com:
+webservers:
+  hosts:
+    foo.example.com:
+    bar.example.com:
+dbservers:
+  hosts:
+    one.example.com:
+    two.example.com:
+    three.example.com:
+```
+
+---
+
+## 分组说明
+
+- 方括号中的名称代表组名（如 `[webservers]`）。
+- 组名用于对主机进行分类管理。
+- 组名命名规则需遵循有效的变量名规则。
+
+---
+
+## 默认分组
+
+即使不定义任何分组，Ansible 也会自动创建两个默认组：
+
+| 组名       | 包含内容         | 说明                       |
+| ---------- | ---------------- | -------------------------- |
+| all        | 所有主机         | 包含库存中的所有主机        |
+| ungrouped  | 无其他分组的主机 | 仅属于 all 组的主机         |
+
+- 每台主机至少属于 2 个组（all + ungrouped 或 all + 其他自定义组）。
+- 如果主机属于任何自定义组，则不再属于 ungrouped 组。
+
+---
+
+## 推荐实践
+
+- 推荐使用 YAML 格式，因为结构更清晰，支持更复杂的配置，并且与 Ansible Playbook 风格一致。
+- 组名应使用描述性名称，如 `webservers`、`dbservers` 等，便于理解和管理。
+```
+---
+
+
+
+- 使用动态库存来跟踪不断启动和停止的服务器和设备的云服务。
+- 使用模式来自动化库存的特定子集。
+- 扩展和改进 Ansible 用于你的库存的连接方法。
+
+
