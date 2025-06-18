@@ -211,7 +211,7 @@ localhost | CHANGED | rc=0 >>
 
 ---
 
-## 6. 编写并运行 Playbook
+## 6. 编写并运行 “Hello Ansible” Playbook
 
 创建 playbook 文件：
 
