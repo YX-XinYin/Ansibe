@@ -68,7 +68,7 @@ dbservers:
 
 - 推荐使用 YAML 格式，因为结构更清晰，支持更复杂的配置，并且与 Ansible Playbook 风格一致。
 - 组名应使用描述性名称，如 `webservers`、`dbservers` 等，便于理解和管理。
-```
+
 ---
 
 
@@ -78,3 +78,4 @@ dbservers:
 - 扩展和改进 Ansible 用于你的库存的连接方法。
 
 
+```
