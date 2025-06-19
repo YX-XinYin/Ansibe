@@ -185,7 +185,6 @@ ansible node1 -m shell -a "systemctl stop myapp && tar czf /backup/app-$(date +%
 
 ---
 
-```markdown
 # Ansible CLI 详解
 
 Ansible CLI（Command Line Interface）是 Ansible 提供的命令行工具集，用于直接通过终端执行自动化操作。它是 Ansible 自动化引擎的主要用户界面之一。
