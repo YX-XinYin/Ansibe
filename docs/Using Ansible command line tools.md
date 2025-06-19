@@ -1,10 +1,19 @@
 # 临时命令的核心价值
 
-临时命令是 Ansible 提供的快速执行单次任务的命令行工具，它完美填补了简单操作与完整 Playbook 之间的空白地带。其设计哲学体现了 Unix “工具做一件事并做好” 的理念。
+临时命令是 Ansible 提供的快速执行单次任务的命令行工具，它完美填补了简单操作与完整 Playbook 之间的空白地带。临时命令非常适合那些很少重复执行的任务。例如，如果您想在圣诞节假期关闭实验室的所有机器，可以直接用 Ansible 执行快速单行命令，而无需编写 playbook。
+
+临时命令格式如下：
+
+```
+$ ansible [模式] -m [模块] -a "[模块选项]"
+```
+
+- `-a` 选项接受 `key=value` 格式的参数，或使用以 `{` 开头 `}` 结尾的 JSON 字符串表示更复杂的选项结构。
+
 
 ---
 
-## 六大典型应用场景
+## 典型应用场景
 
  1. 紧急系统操作
 
@@ -25,7 +34,7 @@ ansible all -m copy -a "src=/etc/hosts dest=/tmp/hosts mode=644 owner=root"
 
 ---
 
- 1. 智能包管理
+ 3. 智能包管理
 
 ```bash
 # 确保所有 Web 服务器安装最新 Nginx
@@ -35,7 +44,7 @@ ansible webservers -m yum -a "name=nginx state=latest" --become
 
 ---
 
- 1. 服务状态管理
+ 4. 服务状态管理
 
 ```bash
 # 滚动重启所有 Java 服务（生产环境慎用）
@@ -44,7 +53,7 @@ ansible app_servers -m service -a "name=tomcat state=restarted" -f 5
 
 ---
 
- 1. 实时系统探测
+ 5. 实时系统探测
 
 ```bash
 # 收集所有服务器的内存信息（JSON格式输出）
@@ -62,7 +71,8 @@ ansible all -C -m copy -a "content='%ops ALL=(ALL) NOPASSWD:ALL' dest=/etc/sudoe
 
 ---
 
-### 并行控制艺术
+## 高阶使用技巧
+并行控制艺术
 
 ```bash
 # 根据硬件性能动态设置并发数
@@ -70,7 +80,7 @@ CPU_CORES=$(nproc)
 ansible cluster -m ping -f $((CPU_CORES * 4))
 ```
 
-### 智能变量注入
+智能变量注入
 
 ```bash
 # 使用环境变量动态传参
@@ -78,7 +88,7 @@ DEPLOY_TAG=$(git rev-parse --short HEAD)
 ansible nodes -m copy -a "src=build/${DEPLOY_TAG}.tar.gz dest=/app"
 ```
 
-### 复合命令执行
+复合命令执行
 
 ```bash
 # 链式操作：停止服务→备份→更新
