@@ -141,4 +141,116 @@ ansible node1 -m shell -a "systemctl stop myapp && tar czf /backup/app-$(date +%
 - 新环境的快速验证
 - 自动化脚本的快速原型设计
 
+# Ansible 主要命令行工具简要功能介绍
+
+1. **ansible**
+   - 核心命令，用于执行临时任务（ad-hoc commands）
+   - 示例：`ansible webservers -m ping`
+
+2. **ansible-config**
+   - 查看和管理 Ansible 配置
+   - 示例：`ansible-config dump`（查看当前配置）
+
+3. **ansible-console**
+   - 提供交互式 Ansible 命令行界面
+   - 示例：`ansible-console --hosts webservers`
+
+4. **ansible-doc**
+   - 查看模块文档和帮助信息
+   - 示例：`ansible-doc yum`（查看 yum 模块文档）
+
+5. **ansible-galaxy**
+   - 管理角色（Roles）和集合（Collections）
+   - 示例：`ansible-galaxy install geerlingguy.nginx`
+
+6. **ansible-inventory**
+   - 查看和管理库存（inventory）信息
+   - 示例：`ansible-inventory --graph`（可视化主机分组）
+
+7. **ansible-playbook**
+   - 执行 playbook 自动化脚本
+   - 示例：`ansible-playbook site.yml`
+
+8. **ansible-pull**
+   - 反向拉取模式，从节点主动获取配置
+   - 示例：`ansible-pull -U https://repo.example.com/playbooks/site.yml`
+
+9. **ansible-vault**
+   - 加密敏感数据（密码/密钥等）
+   - 示例：`ansible-vault encrypt secrets.yml`
+
+---
+
+这些工具共同构成了 Ansible 的完整命令行生态系统，覆盖了从配置管理到任务执行的全流程自动化需求。
+
+---
+
+```markdown
+# Ansible CLI 详解
+
+Ansible CLI（Command Line Interface）是 Ansible 提供的命令行工具集，用于直接通过终端执行自动化操作。它是 Ansible 自动化引擎的主要用户界面之一。
+
+---
+
+## 核心组件
+
+1. **ansible** - 主命令行工具，用于执行临时命令（ad-hoc commands）
+   ```bash
+   ansible [pattern] -m [module] -a "[module options]"
+   ```
+
+2. **ansible-playbook** - 用于运行 playbook 文件
+   ```bash
+   ansible-playbook playbook.yml
+   ```
+
+3. **ansible-galaxy** - 管理角色（Roles）和集合（Collections）
+   ```bash
+   ansible-galaxy install username.rolename
+   ```
+
+4. **ansible-vault** - 加密敏感数据
+   ```bash
+   ansible-vault encrypt file.yml
+   ```
+
+5. **ansible-config** - 查看和修改 Ansible 配置
+   ```bash
+   ansible-config view
+   ```
+
+---
+
+## 主要特点
+
+- **无代理架构**：通过 SSH 或 WinRM 直接管理节点
+- **幂等性**：多次执行相同操作结果一致
+- **模块化设计**：通过模块扩展功能
+- **YAML 语法**：playbook 使用易读的 YAML 格式
+
+---
+
+## 典型工作流程
+
+1. 定义主机清单（inventory）
+2. 编写 playbook 或准备临时命令
+3. 通过 CLI 工具执行自动化任务
+4. 查看执行结果和报告
+
+---
+
+## 与 GUI 工具对比
+
+| 特性        | CLI                     | GUI（如 AWX/Ansible Tower） |
+| ----------- | ----------------------- | --------------------------- |
+| 学习曲线    | 较高                    | 较低                        |
+| 灵活性      | 极高                    | 中等                        |
+| 可脚本化    | 完全支持                | 部分支持                    |
+| 审计追踪    | 需额外配置              | 内置完善                    |
+| 适合场景    | 开发者/高级运维         | 团队协作/企业环境           |
+
+---
+
+Ansible CLI 是自动化工程师的核心工具，特别适合需要精细控制和复杂自动化的场景。
+
 ```
