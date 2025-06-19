@@ -4,21 +4,9 @@
 
 ---
 
-## 与 Playbook 的对比优势
-
-| 特性         | 临时命令           | Playbook                |
-| ------------ | ------------------ | ----------------------- |
-| 使用场景     | 一次性简单任务     | 复杂流程/重复性任务     |
-| 执行速度     | 即时执行（秒级）   | 需要准备时间（分钟级）  |
-| 功能复杂度   | 单一模块功能       | 多模块组合逻辑          |
-| 可维护性     | 无持久化记录       | 版本控制友好            |
-| 学习曲线     | 简单直观           | 需要 YAML 语法知识      |
-
----
-
 ## 六大典型应用场景
 
-### 1. 紧急系统操作
+ 1. 紧急系统操作
 
 ```bash
 # 立即重启亚特兰大机房所有服务器（10台并行）
@@ -27,7 +15,7 @@ ansible atlanta -a "/sbin/reboot" -f 10 -u opsadmin --become -K
 
 ---
 
-### 2. 批量文件管理
+ 2. 批量文件管理
 
 ```bash
 # 同步 hosts 文件到所有节点（自动差异对比）
@@ -37,7 +25,7 @@ ansible all -m copy -a "src=/etc/hosts dest=/tmp/hosts mode=644 owner=root"
 
 ---
 
-### 3. 智能包管理
+ 1. 智能包管理
 
 ```bash
 # 确保所有 Web 服务器安装最新 Nginx
@@ -47,7 +35,7 @@ ansible webservers -m yum -a "name=nginx state=latest" --become
 
 ---
 
-### 4. 服务状态管理
+ 1. 服务状态管理
 
 ```bash
 # 滚动重启所有 Java 服务（生产环境慎用）
@@ -56,7 +44,7 @@ ansible app_servers -m service -a "name=tomcat state=restarted" -f 5
 
 ---
 
-### 5. 实时系统探测
+ 1. 实时系统探测
 
 ```bash
 # 收集所有服务器的内存信息（JSON格式输出）
@@ -65,7 +53,7 @@ ansible datacenter -m setup -a "filter=ansible_mem*"
 
 ---
 
-### 6. 安全合规检查
+ 6. 安全合规检查
 
 ```bash
 # 快速验证 sudo 配置（仅检查不修改）
@@ -73,8 +61,6 @@ ansible all -C -m copy -a "content='%ops ALL=(ALL) NOPASSWD:ALL' dest=/etc/sudoe
 ```
 
 ---
-
-## 高阶使用技巧
 
 ### 并行控制艺术
 
