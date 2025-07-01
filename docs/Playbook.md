@@ -1,7 +1,6 @@
-# Ansible Playbook 全面解析
 # 剧本（Playbook）简介
 
-剧本是 Ansible 用于部署和配置清单中节点的自动化蓝图，采用 YAML 格式编写。本指南将向您介绍剧本的基础知识，并介绍任务和剧本的不同用例，例如：
+剧本是 Ansible 用于部署和配置清单中节点的自动化蓝图，采用 YAML 格式编写。
 
 - **以提升的权限或以不同的用户身份执行任务**  
   可以通过 `become` 或 `remote_user` 参数指定任务以 sudo 或其他用户身份运行。
@@ -143,4 +142,9 @@ ansible-playbook deploy.yml  # 中心节点主动推送配置
 
 ```bash
 ansible-pull -U https://repo/playbooks.git  # 节点主动拉取配置
+<<<<<<< HEAD
 ```
+=======
+```
+```
+>>>>>>> 3195471d65590bb3cda06345fbadd1b238bf7fb1
