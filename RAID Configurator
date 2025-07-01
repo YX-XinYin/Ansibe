@@ -1,10 +1,10 @@
 # 独立磁盘冗余阵列 RAID (Redundant Array of Independent Disks)
 
 ## RAID 0（条带化）
+
 **原理**：数据被分块（条带化）并均匀分布到多个磁盘上，无冗余。
 
 **示例**（4块磁盘，数据 "ABCDEFGH"）：
-
 
 ```
 Disk 1: [A][E] 
