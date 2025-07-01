@@ -144,4 +144,3 @@ ansible-playbook deploy.yml  # 中心节点主动推送配置
 ```bash
 ansible-pull -U https://repo/playbooks.git  # 节点主动拉取配置
 ```
-```
